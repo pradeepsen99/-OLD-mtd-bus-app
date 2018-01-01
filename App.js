@@ -28,14 +28,6 @@ export default class App extends Component {
     }
 
     render() {
-        if (this.state.isLoading) {
-            return (
-                <View style={{flex: 1, paddingTop: 20}}>
-                    <ActivityIndicator />
-                </View>
-            );
-        }
-
         return (
             <View style={{flex: 1, paddingTop: 20}}>
                 <Picker
