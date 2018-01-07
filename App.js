@@ -7,9 +7,11 @@ export default class App extends Component {
         this.state = {
             isLoading: true,
             dataSource: null,
-            latitude: null,
-            longitude: null
-        }
+            key: "f298fa4670de47f68a5630304e66227d",
+            latitude: 89.7,
+            longitude: 89.7,
+            error: 2
+        };
     }
 
 
@@ -18,37 +20,42 @@ export default class App extends Component {
      * as Lat and Long coordinates.
      * @private
      */
-    _getLocation(){
+    getLocation(){
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
-                    error: null,
                 });
             },
-            (error) => this.setState({ error: error.message }),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+            (error) =>
+                this.setState({ error: error.message, latitude: 41.77, longitude: -88.07,}),
+            { enableHighAccuracy: false, timeout: 5000, maximumAge: 10000 },
         );
     }
 
-    componentDidMount() {
-        return fetch('https://developer.cumtd.com/api/v2.2/JSON/getstops?key=a2142759b9ac473e8dbdb95572546a7b')
+    getAPI(){
+        fetch('https://developer.cumtd.com/api/v2.2/JSON/getstopsbylatlon?key='+this.state.key+'&lat='+this.state.latitude.toString()+'&lon='+this.state.longitude.toString())
             .then((response) => response.json())
             .then((responseJson) => {
-                this._getLocation();
-                let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
                 this.setState({
-                    isLoading: false,
                     dataSource: responseJson.stops,
+                    isLoading: false,
                 }, function() {
                     // do something with new state
                 });
             })
             .catch((error) => {
-                console.error(error);
+                //error
             });
     }
+
+    componentDidMount() {
+        this.getLocation();
+        this.getAPI();
+    }
+
+
 
     render() {
         if (this.state.isLoading) {
