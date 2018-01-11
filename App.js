@@ -8,35 +8,36 @@ export default class App extends Component {
             isLoading: true,
             dataSource: null,
             key: "f298fa4670de47f68a5630304e66227d",
-            latitude: 89.7,
-            longitude: 89.7,
+            latitude: null,
+            longitude: null,
             error: 2
         };
     }
 
 
     /**
-     * This function gets the current geo location of the device and stores it
-     * as Lat and Long coordinates.
+     * This function gets the current geo location of the device and stores it as Lat and Long coordinates.
      * @private
      */
-    getLocation(){
+    getLocation = () => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                 });
+                this.getAPI();
             },
-            (error) =>
-                this.setState({ error: error.message, latitude: 41.77, longitude: -88.07,}),
-            { enableHighAccuracy: false, timeout: 5000, maximumAge: 10000 },
         );
     }
 
+    /**
+     * This function takes the latitude and longitude values given in and inputs it into the mtd api and makes a GET
+     * for all the stops nearest to the latitude and longitude given in.
+     */
     getAPI(){
         fetch('https://developer.cumtd.com/api/v2.2/JSON/getstopsbylatlon?key='+this.state.key+'&lat='+this.state.latitude.toString()+'&lon='+this.state.longitude.toString())
-            .then((response) => response.json())
+        .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     dataSource: responseJson.stops,
@@ -52,7 +53,6 @@ export default class App extends Component {
 
     componentDidMount() {
         this.getLocation();
-        this.getAPI();
     }
 
 
