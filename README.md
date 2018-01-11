@@ -25,6 +25,11 @@ cd .../mtd-bus-app
 npm install
 ```
 
+After that you will need to install NativeBase
+```
+npm install native-base --save
+```
+
 ## Deployment
 
 -You will need to have the expo app installed on your mobile device
