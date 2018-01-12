@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, Text, View, Picker } from 'react-native';
+import { ActivityIndicator, View, Dimensions} from 'react-native';
+import {
+    Container,
+    Header,
+    Title,
+    Content,
+    Button,
+    Icon,
+    Right,
+    Body,
+    Left,
+    Picker,
+    Form
+} from "native-base";
+import styles from "./styles";
+
+const Item = Picker.Item;
 
 export default class App extends Component {
     constructor(props) {
@@ -15,6 +31,12 @@ export default class App extends Component {
     }
 
 
+    onValueChange(value) {
+        this.setState({
+            selected1: value
+        });
+    }
+
     /**
      * This function gets the current geo location of the device and stores it as Lat and Long coordinates.
      * @private
@@ -25,11 +47,12 @@ export default class App extends Component {
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
+                    selected1: "key1",
                 });
                 this.getAPI();
             },
         );
-    }
+    };
 
     /**
      * This function takes the latitude and longitude values given in and inputs it into the mtd api and makes a GET
@@ -47,7 +70,7 @@ export default class App extends Component {
                 });
             })
             .catch((error) => {
-                //error
+                //errors
             });
     }
 
@@ -67,15 +90,27 @@ export default class App extends Component {
             );
         }
         return (
-            <View style={{flex: 1, paddingTop: 20}}>
-                <Text>Latitude: {this.state.latitude}</Text>
-                <Text>Longitude: {this.state.longitude}</Text>
-                <Picker
-                    selectedValue={this.state.dataSource}>
-                    {this.state.dataSource.map((item, key)=>(
-                        <Picker.Item label={item.stop_name} value={item.stop_name} key={key}/>))}
-                </Picker>
-            </View>
+            <Container style={styles.container}>
+
+
+                <Content>
+                    <Form>
+                        <Picker
+                            mode="dropdown"
+                            iosHeader="Select your SIM"
+                            iosIcon={<Icon name="ios-arrow-down-outline" />}
+                            style={{ width: Dimensions.get('window').width}}
+                            selectedValue={this.state.selected1}
+                            onValueChange={this.onValueChange.bind(this)}
+                        >
+                            {this.state.dataSource.map((item, key)=>(
+                                <Item label={item.stop_name} value={item.stop_name} key={key}/>))}
+                        </Picker>
+
+                    </Form>
+                </Content>
+
+            </Container>
         );
     }
 }
