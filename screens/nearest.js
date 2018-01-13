@@ -28,11 +28,7 @@ export default class HomeScreen extends Component {
             key: "f298fa4670de47f68a5630304e66227d",
             latitude: null,
             longitude: null,
-            error: 2,
-            tab1: false,
-            tab2: false,
-            tab3: true,
-            tab4: false
+            error: 2
         };
     }
 
@@ -85,41 +81,6 @@ export default class HomeScreen extends Component {
         this.getLocation();
     }
 
-
-    toggleTab1() {
-        this.setState({
-            tab1: true,
-            tab2: false,
-            tab3: false,
-            tab4: false
-        });
-    }
-    toggleTab2() {
-        this.setState({
-            tab1: false,
-            tab2: true,
-            tab3: false,
-            tab4: false
-        });
-    }
-    toggleTab3() {
-        this.setState({
-            tab1: false,
-            tab2: false,
-            tab3: true,
-            tab4: false
-        });
-    }
-    toggleTab4() {
-        this.setState({
-            tab1: false,
-            tab2: false,
-            tab3: false,
-            tab4: true
-        });
-    }
-
-
     render() {
         if (this.state.isLoading) {
             return (
@@ -136,7 +97,7 @@ export default class HomeScreen extends Component {
                         <Form>
                             <Picker
                                 mode="dropdown"
-                                iosHeader="Select your SIM"
+                                iosHeader="Stops"
                                 iosIcon={<Icon name="ios-arrow-down-outline" />}
                                 style={{ width: Dimensions.get('window').width * .9}}
                                 selectedValue={this.state.selected1}
@@ -149,31 +110,6 @@ export default class HomeScreen extends Component {
                         </Form>
                     </Content>
                 </Header>
-
-                <Content padder />
-
-                <Footer>
-                    <FooterTab>
-                        <Button active={this.state.tab1} onPress={() => this.toggleTab1()}>
-                            <Icon active={this.state.tab1} name="apps" />
-                            <Text>Apps</Text>
-                        </Button>
-                        <Button active={this.state.tab2} onPress={() => this.toggleTab2()}>
-                            <Icon active={this.state.tab2} name="camera" />
-                            <Text>Camera</Text>
-                        </Button>
-                        <Button active={this.state.tab3} onPress={() => this.toggleTab3()}>
-                            <Icon active={this.state.tab3} name="compass" />
-                            <Text>Compass</Text>
-                        </Button>
-                        <Button active={this.state.tab4} onPress={() => this.toggleTab4()}>
-                            <Icon active={this.state.tab4} name="contact" />
-                            <Text>Contact</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
-
-
 
             </Container>
         );

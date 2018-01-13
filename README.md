@@ -15,7 +15,7 @@ You will need to have npm, expo and possibly git running on your system for this
 First you will need to clone the repository to your desired location
 
 ```
-https://github.com/pradeepsen99/mtd-bus-app
+git clone https://github.com/pradeepsen99/mtd-bus-app
 ```
 
 Secondly, you will need to install the node_modules which can be done by:
