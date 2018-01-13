@@ -20,6 +20,15 @@ import {
 const Item = Picker.Item;
 
 export default class HomeScreen extends Component {
+
+    /**
+     * Hides the stack bar from showing up
+     * @type {{header: null}}
+     */
+    static navigationOptions = {
+        header: null,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -32,7 +41,10 @@ export default class HomeScreen extends Component {
         };
     }
 
-
+    /**
+     * This function is run when the value of the selected stop is selected.
+     * @param value Value selected.
+     */
     onValueChange(value) {
         this.setState({
             selected1: value
@@ -76,11 +88,18 @@ export default class HomeScreen extends Component {
             });
     }
 
-
+    /**
+     * This runs when the app starts to load up the data on the stops.
+     */
     componentDidMount() {
         this.getLocation();
     }
 
+    /**
+     * render menu.
+     * This one actually loads up what we see.
+     * @returns {*}
+     */
     render() {
         if (this.state.isLoading) {
             return (
@@ -106,7 +125,6 @@ export default class HomeScreen extends Component {
                                 {this.state.dataSource.map((item, key)=>(
                                     <Item label={item.stop_name} value={item.stop_name} key={key}/>))}
                             </Picker>
-
                         </Form>
                     </Content>
                 </Header>

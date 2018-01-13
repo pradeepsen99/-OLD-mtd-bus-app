@@ -3,9 +3,13 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Links',
-  };
+    /**
+     * Hides the stack bar from showing up
+     * @type {{header: null}}
+     */
+    static navigationOptions = {
+        header: null,
+    };
 
   render() {
     return (

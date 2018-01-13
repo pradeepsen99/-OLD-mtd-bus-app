@@ -8,13 +8,7 @@ const RootStackNavigator = StackNavigator(
       screen: MainTabNavigator,
     },
   },
-  {
-    navigationOptions: () => ({
-      headerTitleStyle: {
-        fontWeight: 'normal',
-      },
-    }),
-  }
+
 );
 
 export default class RootNavigator extends React.Component {
