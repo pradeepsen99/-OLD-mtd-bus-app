@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, View, Dimensions} from 'react-native';
+import { ActivityIndicator, View, Dimensions, ScrollView} from 'react-native';
 import {
     Container,
     Header,
@@ -15,6 +15,8 @@ import {
     Footer,
     FooterTab,
     Text,
+    List,
+    ListItem,
 } from "native-base";
 
 const Item = Picker.Item;
@@ -63,7 +65,7 @@ export default class HomeScreen extends Component {
                     longitude: position.coords.longitude,
                     selected1: "key1",
                 });
-                this.getAPI();
+                this.getStops();
             },
         );
     };
@@ -72,7 +74,26 @@ export default class HomeScreen extends Component {
      * This function takes the latitude and longitude values given in and inputs it into the mtd api and makes a GET
      * for all the stops nearest to the latitude and longitude given in.
      */
-    getAPI(){
+    getStops(){
+        fetch('https://developer.cumtd.com/api/v2.2/JSON/getstopsbylatlon?key='+this.state.key+'&lat='+this.state.latitude.toString()+'&lon='+this.state.longitude.toString())
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({
+                    dataSource: responseJson.stops,
+                    isLoading: false,
+                }, function() {
+                    // do something with new state
+                });
+            })
+            .catch((error) => {
+                //errors
+            });
+    }
+
+    /**
+     * This function gets the bus' that come from the defined stop location.
+     */
+    getBus(){
         fetch('https://developer.cumtd.com/api/v2.2/JSON/getstopsbylatlon?key='+this.state.key+'&lat='+this.state.latitude.toString()+'&lon='+this.state.longitude.toString())
             .then((response) => response.json())
             .then((responseJson) => {
@@ -109,9 +130,8 @@ export default class HomeScreen extends Component {
             );
         }
         return (
-            <Container>
-
-                <Header>
+            <View>
+                 <Header>
                     <Content>
                         <Form>
                             <Picker
@@ -129,7 +149,18 @@ export default class HomeScreen extends Component {
                     </Content>
                 </Header>
 
-            </Container>
-        );
+                <ScrollView>
+                    <List>
+                        {this.state.dataSource.map((item, key)=>(
+                            <ListItem>
+                                <Text>
+                                    {item.stop_name}
+                                </Text>
+                            </ListItem>
+                        ))}
+                    </List>
+                </ScrollView>
+            </View>
+    );
     }
 }

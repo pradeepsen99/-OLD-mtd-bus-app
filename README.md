@@ -32,11 +32,11 @@ npm install native-base --save
 
 ## Deployment
 
--You will need to have the expo app installed on your mobile device
--Open expo on your laptop/pc
--Run the tunnel
--Scan the code from expo 
--Volia it's done!
+- You will need to have the expo app installed on your mobile device
+- Open expo on your laptop/pc
+- Run the tunnel
+- Scan the code from expo 
+- Volia it's done!
 
 ## Built With
 
@@ -50,3 +50,7 @@ npm install native-base --save
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgements:
+-[StackOverflow](https://stackoverflow.com/questions/48198341/react-native-geolocation-variables-unacessable) - Helped with GeoLocation bug.
+-[HackerNoon](https://hackernoon.com/react-native-basics-geolocation-adf3c0d10112) - Helped with getting the geolocation.
