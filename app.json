@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "sample-project",
-    "description": "A very interesting project.",
+    "name": "mtd-bus-app",
+    "description": "An app that takes the location of where you are currently and displays the nearest MTD bus stop to you and gives you information on that bus stop nearest to you.",
     "slug": "sample-project",
     "privacy": "public",
     "sdkVersion": "24.0.0",

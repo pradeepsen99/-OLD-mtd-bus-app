@@ -52,5 +52,5 @@ npm install native-base --save
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgements:
--[StackOverflow](https://stackoverflow.com/questions/48198341/react-native-geolocation-variables-unacessable) - Helped with GeoLocation bug.
--[HackerNoon](https://hackernoon.com/react-native-basics-geolocation-adf3c0d10112) - Helped with getting the geolocation.
+- [StackOverflow](https://stackoverflow.com/questions/48198341/react-native-geolocation-variables-unacessable) - Helped with GeoLocation bug.
+- [HackerNoon](https://hackernoon.com/react-native-basics-geolocation-adf3c0d10112) - Helped with getting the geolocation.

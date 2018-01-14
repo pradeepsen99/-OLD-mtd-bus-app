@@ -35,11 +35,13 @@ export default class HomeScreen extends Component {
         super(props);
         this.state = {
             isLoading: true,
-            dataSource: null,
+            stopList: null,
             key: "f298fa4670de47f68a5630304e66227d",
             latitude: null,
             longitude: null,
-            error: 2
+            error: 2,
+            currentStop: 'MERCAPLO',
+            busList: null,
         };
     }
 
@@ -49,8 +51,9 @@ export default class HomeScreen extends Component {
      */
     onValueChange(value) {
         this.setState({
-            selected1: value
+            currentStop: value
         });
+        this.getBus();
     }
 
     /**
@@ -63,7 +66,6 @@ export default class HomeScreen extends Component {
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
-                    selected1: "key1",
                 });
                 this.getStops();
             },
@@ -79,7 +81,7 @@ export default class HomeScreen extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
-                    dataSource: responseJson.stops,
+                    stopList: responseJson.stops,
                     isLoading: false,
                 }, function() {
                     // do something with new state
@@ -88,17 +90,18 @@ export default class HomeScreen extends Component {
             .catch((error) => {
                 //errors
             });
+        this.getBus();
     }
 
     /**
      * This function gets the bus' that come from the defined stop location.
      */
     getBus(){
-        fetch('https://developer.cumtd.com/api/v2.2/JSON/getstopsbylatlon?key='+this.state.key+'&lat='+this.state.latitude.toString()+'&lon='+this.state.longitude.toString())
+        fetch('https://developer.cumtd.com/api/v2.2/JSON/getroutesbystop?key='+this.state.key.toString()+'&stop_id='+this.state.currentStop.toString())
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
-                    dataSource: responseJson.stops,
+                    busList: responseJson.routes,
                     isLoading: false,
                 }, function() {
                     // do something with new state
@@ -139,11 +142,11 @@ export default class HomeScreen extends Component {
                                 iosHeader="Stops"
                                 iosIcon={<Icon name="ios-arrow-down-outline" />}
                                 style={{ width: Dimensions.get('window').width * .9}}
-                                selectedValue={this.state.selected1}
+                                selectedValue={this.state.currentStop}
                                 onValueChange={this.onValueChange.bind(this)}
                             >
-                                {this.state.dataSource.map((item, key)=>(
-                                    <Item label={item.stop_name} value={item.stop_name} key={key}/>))}
+                                {this.state.stopList.map((item, key)=>(
+                                    <Item label={item.stop_name} value={item.stop_id} key={key}/>))}
                             </Picker>
                         </Form>
                     </Content>
@@ -151,10 +154,10 @@ export default class HomeScreen extends Component {
 
                 <ScrollView>
                     <List>
-                        {this.state.dataSource.map((item, key)=>(
+                        {this.state.busList.map((item, key)=>(
                             <ListItem>
                                 <Text>
-                                    {item.stop_name}
+                                    {item.route_long_name}
                                 </Text>
                             </ListItem>
                         ))}
