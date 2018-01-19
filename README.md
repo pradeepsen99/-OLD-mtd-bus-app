@@ -45,7 +45,7 @@ npm install native-base --save
 
 ## Authors
 
-* **Pradeep Senthil** - *Whole app* - [pradeepsen99](https://github.com/pradeepsen99)
+* **Pradeep Senthil** [pradeepsen99](https://github.com/pradeepsen99)
 
 ## License
 
