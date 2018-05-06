@@ -51,7 +51,7 @@ export default class HomeScreen extends Component {
      */
     onValueChange(value) {
         this.setState({
-            currentStop: value
+            currentStop: value.stop_id
         });
         this.getBus();
     }
@@ -77,6 +77,7 @@ export default class HomeScreen extends Component {
      * for all the stops nearest to the latitude and longitude given in.
      */
     getStops(){
+        this.getBus();
         fetch('https://developer.cumtd.com/api/v2.2/JSON/getstopsbylatlon?key='+this.state.key+'&lat='+this.state.latitude.toString()+'&lon='+this.state.longitude.toString())
             .then((response) => response.json())
             .then((responseJson) => {
@@ -90,7 +91,7 @@ export default class HomeScreen extends Component {
             .catch((error) => {
                 //errors
             });
-        this.getBus();
+
     }
 
     /**
@@ -102,7 +103,7 @@ export default class HomeScreen extends Component {
             .then((responseJson) => {
                 this.setState({
                     busList: responseJson.routes,
-                    isLoading: false,
+
                 }, function() {
                     // do something with new state
                 });
