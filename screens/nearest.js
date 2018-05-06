@@ -121,7 +121,7 @@ export default class HomeScreen extends Component {
     }
 
     /**
-     * render menu.
+     * render menu
      * This one actually loads up what we see.
      * @returns {*}
      */
@@ -142,7 +142,7 @@ export default class HomeScreen extends Component {
                                 mode="dropdown"
                                 iosHeader="Stops"
                                 iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                style={{ width: Dimensions.get('window').width * .9}}
+                                style={{ width: Dimensions.get('window').width*.95}}
                                 selectedValue={this.state.currentStop}
                                 onValueChange={this.onValueChange.bind(this)}
                             >

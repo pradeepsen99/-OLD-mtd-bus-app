@@ -7,7 +7,7 @@ import Colors from '../constants/Colors';
 
 import nearbyScreen from '../screens/nearest';
 import LinksScreen from '../screens/LinksScreen';
-import mapScreen from '../screens/SettingsScreen';
+//import mapScreen from '../screens/SettingsScreen';
 
 export default TabNavigator(
   {
@@ -17,9 +17,9 @@ export default TabNavigator(
     Nearby: {
       screen: nearbyScreen,
     },
-    Map: {
-      screen: mapScreen,
-    },
+    //Map: {
+      //screen: mapScreen,
+    //},
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -30,9 +30,9 @@ export default TabNavigator(
           case 'Nearby':
             iconName = Platform.OS === 'ios' ? `ios-compass${focused ? '' : '-outline'}` : 'md-compass';
             break;
-          case 'Map':
-            iconName = Platform.OS === 'ios' ? `ios-map${focused ? '' : '-outline'}` : 'md-map';
-            break;
+          //case 'Map':
+            //iconName = Platform.OS === 'ios' ? `ios-map${focused ? '' : '-outline'}` : 'md-map';
+            //break;
           case 'Search':
             iconName = Platform.OS === 'ios' ? `ios-search${focused ? '' : '-outline'}` : 'md-search';
             break;
