@@ -51,7 +51,7 @@ export default class HomeScreen extends Component {
      */
     onValueChange(value) {
         this.setState({
-            currentStop: value.stop_id
+            currentStop: value
         });
         this.getBus();
     }
