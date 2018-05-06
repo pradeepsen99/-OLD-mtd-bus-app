@@ -38,6 +38,11 @@ npm install native-base --save
 - Scan the code from expo 
 - Volia it's done!
 
+## TODO
+- Need to spice up UI
+- Cross platform specific additions
+- Add info on each bus running with stops stopped at
+
 ## Built With
 
 * [ReactNative](https://github.com/facebook/react-native) - Main Framework
