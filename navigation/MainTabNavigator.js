@@ -11,9 +11,9 @@ import LinksScreen from '../screens/LinksScreen';
 
 export default TabNavigator(
   {
-    Search:{
-      screen: LinksScreen,
-    },
+    //Search:{
+      //screen: LinksScreen,
+    //},
     Nearby: {
       screen: nearbyScreen,
     },
