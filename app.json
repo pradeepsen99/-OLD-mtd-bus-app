@@ -1,15 +1,25 @@
 {
   "expo": {
     "name": "mtd-bus-app",
-    "description": "An app that takes the location of where you are currently and displays the nearest MTD bus stop to you and gives you information on that bus stop nearest to you.",
-    "slug": "sample-project",
+    "description": "This project is really great.",
+    "slug": "mtd-bus-app",
     "privacy": "public",
-    "sdkVersion": "24.0.0",
+    "sdkVersion": "27.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    
-
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     }
